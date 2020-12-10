@@ -1,0 +1,40 @@
+# Idea Generation Game
+
+A game to help workout the idea generation part of the brain.
+
+## Source Control Repository
+[Link to Github](https://github.com/TimothyDunk/idea-generation-game)
+
+## Purpose and Scope
+Idea generation is a skill that can be trained. This app is designed to be a simple, fun game to train that part of the brain. 
+
+The aim of the program is to create a low risk, enjoyable environment to test and develop your idea generation skills. In my experience, the best way to improve your idea generation is by placing restrictions, e.g. a time limit, that require you to not filter yourself. 
+
+In the game, the user is able to select a time limit, and a prompt category. They are then given a prompt in that category and must come up with as many ideas in the time limit as they can. The program will then print a list of their ideas.
+
+The target audience is anyone who is interested in improving their creativity, quick thinking, or idea generation skills.
+
+## Features List - Minimum Viable Product
+
+* As a user, I want to be able to choose a time limit, then have the game tell me when the limit is up, and when I have intervals of time left
+
+* As a user, I want a random prompt within the category to be given to me, so the game has replayability
+
+* As a user, I want to be able to see the ideas I've entered printed as a list after the time limit is up
+
+## Features List - Nice to Have
+
+* As a user, I would like to see how much time I have left to finish the exercise, the entire time
+
+* As a user, I would like to have my answers stored in a file I can access later, to see the different ideas I've come up with
+
+## Outline of User Interaction and Experience
+Errors will be handled so they do not make the app crash. A simple, readable error message will be printed to the user, with some information on what went wrong.
+
+## Control Flow Diagram
+
+![control flow diagram](docs/idea-generator-game-flowchart.png)
+
+## Implementation Plan
+
+[Link to Trello Board](https://trello.com/b/4rthhtFK/idea-generator-game-project)
