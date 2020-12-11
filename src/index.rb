@@ -100,6 +100,7 @@ def play_game()
     end
 end
 
+
 # Select a time limit
 # Select a prompt category
 # Random prompt in category selected
