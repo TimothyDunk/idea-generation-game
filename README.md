@@ -28,6 +28,10 @@ The target audience is anyone who is interested in improving their creativity, q
 
 * As a user, I would like to have my answers stored in a file I can access later, to see the different ideas I've come up with
 
+* As a user, I would like the welcome menu to have an ascii logo, so it looks visually interesting
+
+* As a user, I would like a variety of colours, to make the app more visually interesting, and to denote important information
+
 ## Outline of User Interaction and Experience
 Errors will be handled so they do not make the app crash. A simple, readable error message will be printed to the user, with some information on what went wrong.
 
