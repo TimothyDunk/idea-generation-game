@@ -1,3 +1,5 @@
+require 'timers'
+
 # fix gets
 def gets
     STDIN.gets
@@ -37,6 +39,7 @@ end
 
 def play_game()
     ideas = []
+    timers = Timers::Group.new
     puts '', 'Select a timer amount:'
     puts 'Press 1 for 30 seconds.'
     puts 'Press 2 for 1 minute.'
@@ -77,9 +80,13 @@ def play_game()
     end
     case time_input
     when 1
+        still_time = true
         puts 'You have 30 seconds to...'
-        ideas << gets.chomp
-        sleep 30
+        thirty_second_timer = timers.after(30) {still_time = false}
+        timers.wait
+        while still_time do
+            ideas << gets.chomp
+        end
         puts "time over!"
         puts ideas
     when 2
@@ -99,14 +106,6 @@ def play_game()
         play_game()
     end
 end
-
-
-# Select a time limit
-# Select a prompt category
-# Random prompt in category selected
-# Prompt is shown to user
-# Timer starts
-# gets from user pushes into array
 
 # When timer finishes if array size == 0
 # puts "Sorry! You got nothing. Better luck next time!"
