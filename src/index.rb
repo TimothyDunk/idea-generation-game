@@ -6,12 +6,21 @@ def welcome_menu()
     puts 'within the time limit.', ''
     puts 'You will be given a prompt to inspire the ideas,' 
     puts 'and be able to choose a time limit.', ''
-    puts 'Press Enter to Continue, or "e" to Exit'
+    puts 'Press "1" to Continue, "2" to see about information, or "3" to Exit'
     menu_input = gets.chomp
-    if menu_input.include?('e') || menu_input.include('E')
+    if menu_input.to_i == 3
         puts 'Exiting...', 'Have a good day!'
-    else
+    elsif menu_input.to_i == 2
+        puts 'This game was created by Tim Dunk in 2020.'
+        puts 'press enter to continue'
+        gets
+        welcome_menu()
+    elsif menu_input.to_i == 1
         play_game()
+    else
+        puts "Invalid input. Please try again. Press enter to continue."
+        gets
+        welcome_menu()
     end
 end
 
