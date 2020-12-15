@@ -82,11 +82,17 @@ def play_game()
     when 1
         still_time = true
         puts 'You have 30 seconds to...'
-        thirty_second_timer = timers.after(30) {still_time = false}
-        timers.wait
-        while still_time do
-            ideas << gets.chomp
+        thirty_second_timer = timers.after(10) {still_time = false}
+        thirty_second_timer2 = timers.after(10) {puts '', 'Time\'s up! Press enter to continue.'}
+        timer_thread = Thread.new {timers.wait}
+        for num in 1..100 do
+            if still_time
+                ideas << gets.chomp
+            else
+            end
         end
+        timer_thread.join
+        ideas.pop
         puts "time over!"
         puts ideas
     when 2
