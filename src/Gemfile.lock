@@ -1,0 +1,17 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    colorize (0.8.1)
+    concurrent-ruby (1.1.7)
+    timers (4.3.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  colorize
+  concurrent-ruby
+  timers
+
+BUNDLED WITH
+   2.1.4
