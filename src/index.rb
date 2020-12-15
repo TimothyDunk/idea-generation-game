@@ -38,8 +38,6 @@ def welcome_menu()
 end
 
 def play_game()
-    ideas = []
-    timers = Timers::Group.new
     puts '', 'Select a timer amount:'
     puts 'Press 1 for 30 seconds.'
     puts 'Press 2 for 1 minute.'
@@ -49,12 +47,16 @@ def play_game()
     case time_input
     when 1
         puts 'You have selected 30 seconds.'
+        time_select = 30
     when 2
         puts 'You have selected 1 minute.'
+        time_select = 60
     when 3
         puts 'You have selected 2 minutes.'
+        time_select = 120
     when 4
         puts 'You have selected 5 minutes.'
+        time_select = 300
     else 
         puts "Invalid input. Please try again."
         play_game()
@@ -78,23 +80,10 @@ def play_game()
         puts "Invalid input. Please try again."
         play_game()
     end
+    guessing(time_select)
     case time_input
     when 1
-        still_time = true
-        puts 'You have 30 seconds to...'
-        thirty_second_timer = timers.after(10) {still_time = false}
-        thirty_second_timer2 = timers.after(10) {puts '', 'Time\'s up! Press enter to continue.'}
-        timer_thread = Thread.new {timers.wait}
-        for num in 1..100 do
-            if still_time
-                ideas << gets.chomp
-            else
-            end
-        end
-        timer_thread.join
-        ideas.pop
-        puts "time over!"
-        puts ideas
+        
     when 2
         puts 'You have 1 minute to...'
         sleep 60
@@ -113,13 +102,33 @@ def play_game()
     end
 end
 
-# When timer finishes if array size == 0
-# puts "Sorry! You got nothing. Better luck next time!"
-# if array size == 1 
-# puts "Congratulations! You came up with 1 idea! You gotta start somewhere."
-# puts idea from array
-# else
-# puts "Congratulations! You came up with number ideas!"
-# puts numbered list of ideas from array
+def guessing(number)
+    ideas = []
+    timers = Timers::Group.new
+    still_time = true
+    puts 'Go!'
+    thirty_second_timer = timers.after(number) {still_time = false}
+    thirty_second_timer2 = timers.after(number) {puts '', 'Time\'s up! Press enter to continue.'}
+    timer_thread = Thread.new {timers.wait}
+    for num in 1..100 do
+        if still_time
+            ideas << gets.chomp
+        else
+        end
+    end
+    timer_thread.join
+    ideas.pop
+    if ideas.size == 0
+        puts "You came up with nothing in the time limit! Better luck next time!"
+    elsif ideas.size == 1
+        puts "You came up with 1 idea! Try to judge your ideas less!"
+        puts "Your idea was: "
+        puts ideas
+    else
+        puts "You came up with #{ideas.size} ideas! Good work!"
+        puts "This is what you came up with: "
+        puts ideas
+    end
+end
 
 welcome_menu()
