@@ -15,7 +15,9 @@ def welcome_menu()
     puts 'within the time limit.', ''
     puts 'You will be given a prompt to inspire the ideas,' 
     puts 'and be able to choose a time limit.', ''
-    puts 'Press "1" to Continue, press "2" to see about information, or press "3" to Exit'
+    puts "Press 1 to Continue."
+    puts "Press 2 to see about information."
+    puts "Press 3 to Exit."
     menu_input = gets.chomp
     # exit
     if menu_input.to_i == 3
@@ -120,6 +122,14 @@ def guessing(number, phrase)
         puts "You came up with #{ideas.size} ideas! Good work!"
         puts "This is what you came up with: "
         puts ideas
+    end
+    puts "", "Press 1 to exit."
+    puts "Press enter to continue."
+    user_end = gets.chomp.to_i
+    if user_end == 1
+        puts "Exiting...", "Have a good day!"
+    else
+        welcome_menu()
     end
 end
 
