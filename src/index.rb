@@ -69,9 +69,15 @@ def play_game()
     prompt_input = gets.chomp.to_i
     case prompt_input
     when 1
+        band_names = ["Snail", "Mouse", "Cold", "Valley", "Steep"]
         puts 'You have selected band names.'
+        prompt_num = Random.rand(5)
+        prompt = "Come up with as many band names that contain the word #{band_names[prompt_num]} as you can."
     when 2
+        sketch_ideas = ["Restaurant", "Soup", "Doctor", "Grapes", "Houseplant"]
         puts 'You have selected sketch ideas.'
+        prompt_num = Random.rand(5)
+        prompt = "Come up with as many sketch ideas as you can think of inspired by the word #{sketch_ideas[prompt_num]}."
     when 3
         puts 'You have selected observations.'
     when 4
@@ -80,32 +86,14 @@ def play_game()
         puts "Invalid input. Please try again."
         play_game()
     end
-    guessing(time_select)
-    case time_input
-    when 1
-        
-    when 2
-        puts 'You have 1 minute to...'
-        sleep 60
-        puts "Time over!"
-    when 3
-        puts 'You have 2 minutes to...'
-        sleep 120
-        puts "Time over!"
-    when 4
-        puts 'You have 5 minutes to...'
-        sleep 300
-        puts "Time over!"
-    else 
-        puts "Invalid input. Please try again."
-        play_game()
-    end
+    guessing(time_select, prompt)
 end
 
-def guessing(number)
+def guessing(number, phrase)
     ideas = []
     timers = Timers::Group.new
     still_time = true
+    puts phrase
     puts 'Go!'
     thirty_second_timer = timers.after(number) {still_time = false}
     thirty_second_timer2 = timers.after(number) {puts '', 'Time\'s up! Press enter to continue.'}
