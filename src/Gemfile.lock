@@ -1,16 +1,16 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    artii (2.1.2)
     colorize (0.8.1)
-    concurrent-ruby (1.1.7)
     timers (4.3.2)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  artii
   colorize
-  concurrent-ruby
   timers
 
 BUNDLED WITH

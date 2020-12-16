@@ -1,4 +1,6 @@
 require "timers"
+require "artii"
+require "colorize"
 
 # fix gets
 def gets
@@ -9,6 +11,8 @@ end
 def welcome_menu()
     # clear previous text on terminal
     system("clear")
+    artii = Artii::Base.new
+    puts artii.asciify("The Idea Game")
     # welcome text
     puts "Welcome to the Idea Game!", ""
     puts "The aim of this game is to come up with as many ideas as possible" 
