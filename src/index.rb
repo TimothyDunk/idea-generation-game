@@ -66,22 +66,25 @@ def play_game()
     puts 'Press 2 for sketch ideas.'
     puts 'Press 3 for observations.'
     puts 'Press 4 for business ideas.'
+    prompt_num = Random.rand(5)
     prompt_input = gets.chomp.to_i
     case prompt_input
     when 1
         band_names = ["Snail", "Mouse", "Cold", "Valley", "Steep"]
         puts 'You have selected band names.'
-        prompt_num = Random.rand(5)
         prompt = "Come up with as many band names that contain the word #{band_names[prompt_num]} as you can."
     when 2
         sketch_ideas = ["Restaurant", "Soup", "Doctor", "Grapes", "Houseplant"]
         puts 'You have selected sketch ideas.'
-        prompt_num = Random.rand(5)
-        prompt = "Come up with as many sketch ideas as you can think of inspired by the word #{sketch_ideas[prompt_num]}."
+        prompt = "Come up with as many sketch ideas as you can, inspired by the word #{sketch_ideas[prompt_num]}."
     when 3
+        observations = ["Tea", "Breakfast", "Headlice", "Glass", "An Orange"]
         puts 'You have selected observations.'
+        prompt = "Write as many observations about #{observations[prompt_num]} as you can."
     when 4
+        business_ideas = ["Salt", "Bicycles", "Dating", "Technology", "Books"]
         puts 'You have selected business ideas.'
+        prompt = "Come up with as many business ideas as you can, inspired by the word #{business_ideas[prompt_num]}"
     else 
         puts "Invalid input. Please try again."
         play_game()
@@ -106,6 +109,7 @@ def guessing(number, phrase)
     end
     timer_thread.join
     ideas.pop
+    system("clear")
     if ideas.size == 0
         puts "You came up with nothing in the time limit! Better luck next time!"
     elsif ideas.size == 1
