@@ -12,7 +12,7 @@ def welcome_menu()
     # clear previous text on terminal
     system("clear")
     artii = Artii::Base.new
-    puts artii.asciify("The Idea Game").on_blue
+    puts artii.asciify("The Idea Game").white.on_blue
     # welcome text
     puts "Welcome to the Idea Game!", ""
     puts "The aim of this game is to come up with as many ideas as possible" 
