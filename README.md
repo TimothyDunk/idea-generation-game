@@ -2,6 +2,19 @@
 
 A game to help workout the idea generation part of the brain.
 
+## How to Install and Use
+### Dependencies
+* Ruby
+
+### To install and run
+* Run install-run.sh in your terminal
+
+or
+
+* $ gem install bundler
+* $ bundle install
+* $ ruby index.rb
+
 ## Source Control Repository
 [Link to Github](https://github.com/TimothyDunk/idea-generation-game)
 
