@@ -64,6 +64,7 @@ def play_game()
     puts "Press 4 for 5 minutes."
     # user gets to select time
     time_input = gets.chomp.to_i
+    # case to set time_select based on user input
     case time_input
     when 1
         puts "You have selected 30 seconds."
@@ -126,6 +127,10 @@ def play_game()
 end
 # actual gameplay
 def guessing(number, phrase)
+    puts "Press enter to continue."
+    gets
+    # clear screen
+    system("clear")
     # ideas array is created
     ideas = []
     # timers is created for use with timers gem
