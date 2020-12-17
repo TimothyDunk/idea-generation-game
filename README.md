@@ -48,6 +48,12 @@ The target audience is anyone who is interested in improving their creativity, q
 ## Outline of User Interaction and Experience
 Errors will be handled so they do not make the app crash. A simple, readable error message will be printed to the user, with some information on what went wrong.
 
+The menu screens will be clear, and easy to navigate.
+
+The game will only allow the user to input ideas while the time limit has not run out. It will not accept answers after that.
+
+The game will print out all answers back to the user.
+
 ## Control Flow Diagram
 
 ![control flow diagram](docs/idea-generator-game-flowchart.png)
