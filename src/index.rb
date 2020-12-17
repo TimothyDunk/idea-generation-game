@@ -116,17 +116,21 @@ def guessing(number, phrase)
     end
     timer_thread.join
     ideas.pop
+    after_screen(ideas)
+end
+
+def after_screen(array)
     system("clear")
-    if ideas.size == 0
+    if array.size == 0
         puts "You came up with nothing in the time limit! Better luck next time!"
-    elsif ideas.size == 1
+    elsif array.size == 1
         puts "You came up with 1 idea! Try to judge your ideas less!"
         puts "Your idea was: "
-        puts ideas
+        puts array
     else
-        puts "You came up with #{ideas.size} ideas! Good work!"
+        puts "You came up with #{array.size} ideas! Good work!"
         puts "This is what you came up with: "
-        puts ideas
+        puts array
     end
     puts "", "Press 1 to exit."
     puts "Press enter to continue."
