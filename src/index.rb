@@ -2,6 +2,7 @@
 require "timers"
 require "artii"
 require "colorize"
+require "tty-prompt"
 
 # fix gets
 def gets
@@ -14,6 +15,8 @@ def welcome_menu()
     system("clear")
     #define artii for gem use
     artii = Artii::Base.new
+    # define prompt for tty prompt gem for user interface
+    prompt = TTY::Prompt.new
     # puts ascii version of "The Idea Game" with Artii gem
     # this title is white text on a blue bg through Colorize gem
     puts artii.asciify("The Idea Game").white.on_blue
@@ -24,17 +27,13 @@ def welcome_menu()
     puts "You will be given a prompt to inspire the ideas," 
     puts "and be able to choose a time limit.", ""
     # menu options
-    puts "Press 1 to Continue."
-    puts "Press 2 to see about information."
-    puts "Press 3 to Exit."
-    #user input
-    menu_input = gets.chomp
+    menu_input = prompt.select("Options:", %w(Continue About Exit))
     #menu options
     # exit option
-    if menu_input.to_i == 3
+    if menu_input == "Exit"
         puts "Exiting...", "Have a good day!"
     # about option
-    elsif menu_input.to_i == 2
+    elsif menu_input == "About"
         puts "This game was created by Tim Dunk in 2020."
         puts "Press enter to continue."
         # this gets stops the app from moving on until user presses enter
@@ -42,7 +41,7 @@ def welcome_menu()
         # return to start of loop
         welcome_menu()
     # continue option
-    elsif menu_input.to_i == 1
+    elsif menu_input == "Continue"
         # progresses to next method
         play_game()
     # rescuing invalid inputs, preventing errors
@@ -57,73 +56,79 @@ def welcome_menu()
 end
 # options for game
 def play_game()
-    puts "", "Select a timer amount:"
-    puts "Press 1 for 30 seconds."
-    puts "Press 2 for 1 minute."
-    puts "Press 3 for 2 minutes."
-    puts "Press 4 for 5 minutes."
-    # user gets to select time
-    time_input = gets.chomp.to_i
+    # define prompt for tty prompt gem for user interface
+    prompt = TTY::Prompt.new
+
+    # select time
+    time_input = prompt.select("Select a timer amount:", "30 seconds", "1 minute", "2 minutes", "5 minutes")
     # case to set time_select based on user input
     case time_input
-    when 1
+    when "30 seconds"
         puts "You have selected 30 seconds."
         time_select = 30
-    when 2
+    when "1 minute"
         puts "You have selected 1 minute."
         time_select = 60
-    when 3
+    when "2 minutes"
         puts "You have selected 2 minutes."
         time_select = 120
-    when 4
+    when "5 minutes"
         puts "You have selected 5 minutes."
         time_select = 300
+    # with tty prompt there should be no way for the user to have selected anything else
+    # but this part of code is left in for safety
     else 
         puts "Invalid input. Please try again."
         # returns to start of this screen
         play_game()
     end
-    puts "", "Select a prompt category:"
-    puts "Press 1 for band names."
-    puts "Press 2 for sketch ideas."
-    puts "Press 3 for observations."
-    puts "Press 4 for business ideas."
+    # Select options for prompt category
+    prompt_input = prompt.select("Select a prompt category:", "Band Names", "Sketch Ideas", "Observations", "Business Ideas.")
     # random number for use in randomizing prompt given to user
     prompt_num = Random.rand(5)
-    # user input to decide prompt category
-    prompt_input = gets.chomp.to_i
+    # what happens when each option is selected
     case prompt_input
-    when 1
+    when "Band Names"
         # array of prompts to be chosen from
         band_names = ["Snail", "Mouse", "Cold", "Valley", "Steep"]
         puts "You have selected band names."
         # sets prompt 
         prompt = "Come up with as many band names that contain the word #{band_names[prompt_num]} as you can."
-    when 2
+        # Moves to next part of game
+        guessing(time_select, prompt)
+    when "Sketch Ideas"
         # array of prompts to be chosen from
         sketch_ideas = ["Restaurant", "Soup", "Doctor", "Grapes", "Houseplant"]
         puts "You have selected sketch ideas."
         # sets prompt
         prompt = "Come up with as many sketch ideas as you can, inspired by the word #{sketch_ideas[prompt_num]}."
-    when 3
+        # moves to next part of game
+        guessing(time_select, prompt)
+    when "Observations"
         # array of prompts to be chosen from
         observations = ["Tea", "Breakfast", "Headlice", "Glass", "An Orange"]
         puts "You have selected observations."
         # sets prompt
         prompt = "Write as many observations about #{observations[prompt_num]} as you can."
-    when 4
+        # moves to next part of game
+        guessing(time_select, prompt)
+    when "Business Ideas"
         # array of prompts to be chosen from
         business_ideas = ["Salt", "Bicycles", "Dating", "Technology", "Books"]
         puts "You have selected business ideas."
         # sets prompt
         prompt = "Come up with as many business ideas as you can, inspired by the word #{business_ideas[prompt_num]}"
+        # moves to next part of game
+        guessing(time_select, prompt)
+    # with tty prompt there should be no way for the user to have selected anything else
+    # but this part of code is left in for safety
     else 
         puts "Invalid input. Please try again."
         # returns user to start of section
         play_game()
     end
     # moves to next section
-    guessing(time_select, prompt)
+    
 end
 # actual gameplay
 def guessing(number, phrase)
@@ -166,6 +171,7 @@ end
 
 # end game screen
 def after_screen(array)
+    prompt = TTY::Prompt.new
     # screen is cleared
     system("clear")
     # end messages
@@ -184,15 +190,15 @@ def after_screen(array)
         puts array
     end
     # end game options
-    puts "", "Press 1 to exit."
-    puts "Press enter to play again."
-    # get user input
-    user_end = gets.chomp.to_i
+    puts ""
+    user_end = prompt.select("Options: ", "Exit", "Play Again")
     # 1 is the only other option, this will exit
-    if user_end == 1
+    if user_end == "Exit"
         puts "Exiting...", "Have a good day!"
     # starts program over
-    else
+    elsif user_end == "Play Again"
+        puts "Press Enter to continue."
+        gets
         welcome_menu()
     end
 end
