@@ -11,25 +11,21 @@ end
 
 # parse command line arguments
 def parse_argv()
+    # if there's no command line arguments
     if ARGV.size == 0
-        ask_for_help = false
-        ask_for_version = false
         welcome_menu()
+    # if there's a help argument passed
     elsif ARGV[0] == "--help" || ARGV[0] == "-h"
-        ask_for_help = true
-        ask_for_version = false
         puts "This is a game where you try to come up with as many ideas in a time limit" 
         puts "as possible."
         puts "Play the game using $ ruby index.rb"
         puts "See the version you have installed using $ ruby index.rb -v"
         puts "If you need any further help, please see README.md"
+    # if there's a version argument passed
     elsif ARGV[0] == "--version" || ARGV[0] == "-v"
-        ask_for_version = true
-        ask_for_help = false
         puts "The version of the idea game you have is v1.0"
+    # if another, unrecognised argument is passed
     else 
-        ask_for_help = false
-        ask_for_version = false
         puts "#{ARGV[0]} is not a recognised command for this program."
         puts "Use $ ruby index.rb --help or $ ruby index.rb -h"
         puts "to see help information."
