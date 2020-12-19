@@ -9,6 +9,34 @@ def gets
     STDIN.gets
 end
 
+# parse command line arguments
+def parse_argv()
+    if ARGV.size == 0
+        ask_for_help = false
+        ask_for_version = false
+        welcome_menu()
+    elsif ARGV[0] == "--help" || ARGV[0] == "-h"
+        ask_for_help = true
+        ask_for_version = false
+        puts "This is a game where you try to come up with as many ideas in a time limit" 
+        puts "as possible."
+        puts "Play the game using $ ruby index.rb"
+        puts "See the version you have installed using $ ruby index.rb -v"
+        puts "If you need any further help, please see README.md"
+    elsif ARGV[0] == "--version" || ARGV[0] == "-v"
+        ask_for_version = true
+        ask_for_help = false
+        puts "The version of the idea game you have is v1.0"
+    else 
+        ask_for_help = false
+        ask_for_version = false
+        puts "#{ARGV[0]} is not a recognised command for this program."
+        puts "Use $ ruby index.rb --help or $ ruby index.rb -h"
+        puts "to see help information."
+        puts "Otherwise just use $ ruby index.rb", "to play the game"
+    end
+end
+
 # Welcome message
 def welcome_menu()
     # clear previous text on terminal
@@ -204,19 +232,4 @@ def after_screen(array)
 end
 
 # triggers program start when index.rb is run
-if ARGV.size == 0
-    welcome_menu()
-elsif ARGV[0] == "--help" || ARGV[0] == "-h"
-    puts "This is a game where you try to come up with as many ideas in a time limit" 
-    puts "as possible."
-    puts "Play the game using $ ruby index.rb"
-    puts "See the version you have installed using $ ruby index.rb -v"
-    puts "If you need any further help, please see README.md"
-elsif ARGV[0] == "--version" || ARGV[0] == "-v"
-    puts "The version of the idea game you have is v1.0"
-else 
-    puts "#{ARGV[0]} is not a recognised command for this program."
-    puts "Use $ ruby index.rb --help or $ ruby index.rb -h"
-    puts "to see help information."
-    puts "Otherwise just use $ ruby index.rb", "to play the game"
-end
+parse_argv()
