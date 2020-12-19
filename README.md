@@ -59,5 +59,15 @@ The game will print out all answers back to the user.
 ![control flow diagram](docs/idea-generator-game-flowchart.png)
 
 ## Implementation Plan
+For the implementation plan, I used Trello to keep track of features and deadlines.
+
+Main view of trello board. I kept the features as cards and categorised them by the stage of completion they were at.
+![Trello Board Screenshot](docs/trello-screenshot1.png)
+
+![Prompts Trello Card Screenshot](docs/trello-screenshot2.png)
+
+![Game functionality Trello Card Screenshot](docs/trello-screenshot3.png)
+
+![Menus Trello Card Screenshot](docs/trello-screenshot4.png)
 
 [Link to Trello Board](https://trello.com/b/4rthhtFK/idea-generator-game-project)
