@@ -107,7 +107,7 @@ def play_game()
         play_game()
     end
     # Select options for prompt category
-    prompt_input = prompt.select("Select a prompt category:", "Band Names", "Sketch Ideas", "Observations", "Business Ideas.")
+    prompt_input = prompt.select("Select a prompt category:", "Band Names", "Sketch Ideas", "Observations", "Business Ideas")
     # random number for use in randomizing prompt given to user
     prompt_num = Random.rand(5)
     # what happens when each option is selected
